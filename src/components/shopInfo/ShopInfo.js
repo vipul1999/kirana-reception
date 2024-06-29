@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import axios from 'axios';
-import UserReview from '../userReview/UserReview'; // Adjust path as per your project structure
 import SubmitReview from '../SubmitReview'; // Adjust path as per your project structure
 import ShowReviews from '../ShowReviews'; // Adjust path as per your project structure
 import './ShopInfo.css';

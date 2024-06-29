@@ -1,62 +1,78 @@
+// SubmitReview.js
+
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import './SubmitReview.css';
 
 const SubmitReview = ({ shop, fetchShopData }) => {
-  const [userRating, setUserRating] = useState(0);
-  const [userComment, setUserComment] = useState('');
-
-  const handleRatingChange = (event) => {
-    setUserRating(parseInt(event.target.value));
+  const initialReviewState = {
+    userRating: 0,
+    userComment: '',
   };
 
-  const handleCommentChange = (event) => {
-    setUserComment(event.target.value);
+  const [review, setReview] = useState({ ...initialReviewState });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setReview({ ...review, [name]: value });
   };
 
   const submitReview = async () => {
     const reviewData = {
-      user: 'Anonymous',
-      comment: userComment,
-      rating: userRating,
+      user: 'Anonymous', // Replace with actual user data or authentication mechanism
+      comment: review.userComment,
+      rating: review.userRating,
     };
 
     try {
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/shops/${shop._id}/rate`, reviewData);
-      fetchShopData();
-      setUserRating(0);
-      setUserComment('');
+      fetchShopData(); // Refresh shop data after submitting review
+      setReview({ ...initialReviewState }); // Reset form values after submission
     } catch (error) {
       console.error('Error submitting review:', error);
     }
   };
 
   return (
-    <div className="shop-actions">
-      <Form.Group controlId="userRating">
-        <Form.Label>Your Rating:</Form.Label>
-        <Form.Control as="select" value={userRating} onChange={handleRatingChange}>
-          <option value={0}>Select...</option>
-          <option value={1}>1 star</option>
-          <option value={2}>2 stars</option>
-          <option value={3}>3 stars</option>
-          <option value={4}>4 stars</option>
-          <option value={5}>5 stars</option>
-        </Form.Control>
-      </Form.Group>
-      <Form.Group controlId="userComment">
-        <Form.Label>Your Comment:</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={3}
-          value={userComment}
-          onChange={handleCommentChange}
-        />
-      </Form.Group>
-      <Button variant="primary" onClick={submitReview}>
-        Submit Rating
-      </Button>
+    <div className="submit-review-container">
+      <h3>Submit Your Review</h3>
+      <Form>
+        <Form.Group as={Row} controlId="userRating">
+          <Form.Label column sm={3}>
+            Your Rating:
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Control as="select" name="userRating" value={review.userRating} onChange={handleInputChange}>
+              {[...Array(6).keys()].slice(1).map((rating) => (
+                <option key={rating} value={rating}>
+                  {rating} star{rating !== 1 ? 's' : ''}
+                </option>
+              ))}
+            </Form.Control>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} controlId="userComment">
+          <Form.Label column sm={3}>
+            Your Comment:
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              name="userComment"
+              value={review.userComment}
+              onChange={handleInputChange}
+              className="form-control"
+            />
+          </Col>
+        </Form.Group>
+        <div className="submit-review-button">
+          <Button variant="primary" onClick={submitReview}>
+            Submit Rating
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 };

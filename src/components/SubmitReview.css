@@ -1,20 +1,16 @@
-.shop-actions {
-    margin-top: 20px;
-  }
-  
-  .shop-actions .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .shop-actions .form-group label {
-    font-weight: bold;
-  }
-  
-  .shop-actions .form-group textarea {
-    resize: vertical; /* Allow vertical resizing of textarea */
-  }
-  
-  .shop-actions button {
-    margin-right: 10px;
-  }
-  
+.submit-review-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.submit-review-button {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.submit-review-button button {
+  width: 150px;
+}
