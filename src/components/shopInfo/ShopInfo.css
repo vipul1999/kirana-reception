@@ -1,39 +1,66 @@
 .shop-header {
-    display: flex;
-    flex-direction:row;
-  }
-  
-  .shop-image {
-    width: 100px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
-    margin-right: 20px;
-  }
-  
-  .shop-img {
-    
-    width: 120px; /* Example width, adjust as needed */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    
-  }
-  
-  .shop-details {
-    flex: 1 1 auto;
-  }
-  
-  .shop-reviews {
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
-  
 
-.toggle-reviews {
+.shop-image {
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.shop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-details {
+  flex: 1;
+}
+
+.shop-details h5 {
+  font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #007bff; /* Adjust color as needed */
+}
+
+.shop-details p {
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 .shop-reviews {
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
-/* Add more specific styles as needed */
+.toggle-reviews {
+  font-weight: bold;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.toggle-reviews:hover {
+  text-decoration: underline;
+}
+
+.shop-reviews h6 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.shop-actions {
+  margin-top: 20px;
+}
+
+.shop-actions .form-group {
+  margin-bottom: 15px;
+}
+
+.shop-actions button {
+  margin-right: 10px;
+}

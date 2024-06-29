@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserReview.css'; // Import UserReview CSS for styling
+import './UserReview.css'; // Ensure UserReview.css is properly linked for styling
 
 const UserReview = ({ review }) => {
   // Sample avatar URLs for demonstration
@@ -25,7 +25,7 @@ const UserReview = ({ review }) => {
   return (
     <div className="user-review">
       <div className="user-review-header">
-        <img src= {"https://via.placeholder.com/50?text=User"} alt={`${review.user}'s avatar`} className="avatar" />
+        <img src={avatarUrls[review.user]} alt={`${review.user}'s avatar`} className="avatar" />
         <div>
           <div className="user-review-stars">
             {renderStars()}
