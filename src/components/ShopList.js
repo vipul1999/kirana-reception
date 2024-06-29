@@ -1,48 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure bootstrap CSS is imported
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import ShopInfo from './shopInfo/ShopInfo';
+import './ShopList.css'; // Import the ShopList CSS
 
 const ShopList = () => {
   const [shops, setShops] = useState([]);
 
   useEffect(() => {
-    const fetchShops = async () => {
+    async function fetchData() {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/shops`);
-        console.log('API Response:', response); // Log the entire response
         setShops(response.data);
       } catch (error) {
-        console.error('Error fetching shops:', error);
+        console.error('Error fetching data:', error);
       }
-    };
+    }
 
-    fetchShops();
+    fetchData();
   }, []);
 
   return (
-    <div>
-      <h2>Local Shops</h2>
-      <ul>
+    <Container className="mt-5 shop-list-container">
+      <h1 className="text-center mb-4">Local Shops Listing</h1>
+      <Row xs={1} md={2} lg={3} className="g-4">
         {shops.map((shop) => (
-          <li key={shop._id}>
-            <h3>{shop.name}</h3>
-            <p>Address: {shop.address}</p>
-            <p>Contact: {shop.contact}</p>
-            <p>Services: {shop.services.join(', ')}</p>
-            <p>Rating: {shop.rating}</p>
-            <p>Reviews:</p>
-            <ul>
-              {shop.reviews.map((review, index) => (
-                <li key={index}>
-                  <p>User: {review.user}</p>
-                  <p>Comment: {review.comment}</p>
-                  <p>Rating: {review.rating}</p>
-                </li>
-              ))}
-            </ul>
-          </li>
+          <Col key={shop._id}>
+            <Card className="custom-card">
+              <ShopInfo shop={shop} />
+            </Card>
+          </Col>
         ))}
-      </ul>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
