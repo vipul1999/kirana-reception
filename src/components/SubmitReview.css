@@ -1,16 +1,69 @@
-.submit-review-container {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.submit-review-button {
-  text-align: right;
+.shop-actions {
   margin-top: 20px;
 }
 
-.submit-review-button button {
-  width: 150px;
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.rating-stars .star {
+  font-size: 2rem; /* Increase the size of the stars */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  margin: 0 5px;
+  color: #ddd; /* Default color for empty stars */
+}
+
+.rating-stars .star.selected {
+  color: #f4d03f; /* Yellow color for selected stars */
+}
+
+.rating-stars .star:hover {
+  transform: scale(1.2);
+}
+
+.rating-stars .star.selected:hover {
+  transform: scale(1.2); /* Increase size on hover for selected stars */
+}
+
+.rating-stars .star:not(.selected):hover {
+  transform: scale(1.2);
+  color: #f4d03f; /* Change color on hover */
+}
+
+.rating-stars .star:active {
+  transform: scale(1.1);
+}
+
+.rating-stars label {
+  margin: 0;
+  padding: 0;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+button[disabled]:hover {
+  background-color: #007bff; /* Keep the same color on hover when disabled */
+}
+
+button[disabled]:active {
+  transform: none;
+}
+
+button[disabled] .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+button[disabled] .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
 }
