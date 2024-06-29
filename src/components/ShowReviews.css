@@ -1,60 +1,16 @@
-/* ShowReviews.css */
-
 .shop-reviews {
-    margin-top: 20px;
+    text-align: left; /* Ensure text alignment is left for all content */
   }
   
-  .toggle-reviews {
-    font-weight: bold;
-    color: #007bff;
-    cursor: pointer;
-    text-decoration: none;
+  .show-reviews-button {
+    margin-bottom: 10px; /* Add margin below the toggle button */
   }
   
-  .toggle-reviews:hover {
-    text-decoration: underline;
+  .pagination-container {
+    margin-top: 10px; /* Add margin above the pagination buttons */
   }
   
-  .shop-reviews h6 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .user-review {
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .user-review-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .user-review-stars {
-    color: #f4d03f; /* Color for stars */
-  }
-  
-  .user-review-user {
-    font-style: italic;
-    color: #666;
-  }
-  
-  .user-review-comment {
-    margin-top: 5px;
-  }
-  
-  .star {
-    font-size: 1.2rem;
+  .pagination-button {
+    margin-right: 10px; /* Add spacing between pagination buttons */
   }
   

@@ -43,7 +43,7 @@ const ShopInfo = ({ shop }) => {
           <p>Address: {shop.address}</p>
           <p>Contact: {shop.contact}</p>
           <p>Services: {shop.services.join(', ')}</p>
-          <p>Rating: {renderStars(shop.rating)}</p>
+          <p>Rating: {renderStars(shop.rating)} by {shop.reviews.length} Users</p>
         </div>
       </div>
       <SubmitReview shop={shop} fetchShopData={fetchShopData} />

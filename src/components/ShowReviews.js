@@ -1,26 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import UserReview from './userReview/UserReview'; // Adjust path as per your project structure
 import './ShowReviews.css';
 
-const ShowReviews = ({ reviews, showReviews, toggleReviews }) => (
-  <div className="shop-reviews">
-    <Button
-      variant="link"
-      onClick={toggleReviews}
-      className="toggle-reviews"
-    >
-      {showReviews ? 'Hide Reviews' : 'Show Reviews'}
-    </Button>
-    {showReviews && (
-      <>
-        <h6>Reviews:</h6>
-        {reviews.map((review, index) => (
-          <UserReview key={index} review={review} />
-        ))}
-      </>
-    )}
-  </div>
-);
+const ShowReviews = ({ reviews }) => {
+  const [showReviews, setShowReviews] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const reviewsPerPage = 5;
+
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const toggleReviews = () => {
+    setShowReviews(!showReviews);
+  };
+
+  return (
+    <div className="shop-reviews">
+      <div className="show-reviews-button">
+        <Button
+          variant="outline-primary"
+          onClick={toggleReviews}
+          className="toggle-reviews"
+          style={{ textAlign: 'left' }} // Align button text to the left
+        >
+          {showReviews ? 'Hide Reviews' : 'Show Reviews'}
+        </Button>
+      </div>
+      {showReviews && (
+        <>
+          <div className="pagination-container">
+            <Button
+              variant="link"
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="pagination-button"
+            >
+              Previous
+            </Button>
+            <Button
+              variant="link"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="pagination-button"
+            >
+              Next
+            </Button>
+          </div>
+          {currentReviews.length > 0 ? (
+            <>
+              <h6>Reviews:</h6>
+              {currentReviews.map((review, index) => (
+                <UserReview key={index} review={review} />
+              ))}
+            </>
+          ) : (
+            <p>No reviews to display.</p>
+          )}
+        </>
+      )}
+    </div>
+  );
+};
 
 export default ShowReviews;

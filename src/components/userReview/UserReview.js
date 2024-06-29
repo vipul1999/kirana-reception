@@ -2,7 +2,6 @@ import React from 'react';
 import './UserReview.css'; // Ensure UserReview.css is properly linked for styling
 
 const UserReview = ({ review }) => {
-  // Sample avatar URLs for demonstration
   const avatarUrls = {
     user1: 'https://via.placeholder.com/50?text=User1',
     user2: 'https://via.placeholder.com/50?text=User2',
@@ -13,11 +12,9 @@ const UserReview = ({ review }) => {
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      if (i < review.rating) {
-        stars.push(<span key={i} className="star">&#9733;</span>); // Full star
-      } else {
-        stars.push(<span key={i} className="star">&#9734;</span>); // Empty star
-      }
+      stars.push(
+        <span key={i} className={`star ${i < review.rating ? 'filled' : 'empty'}`}>&#9733;</span>
+      );
     }
     return stars;
   };
@@ -25,8 +22,8 @@ const UserReview = ({ review }) => {
   return (
     <div className="user-review">
       <div className="user-review-header">
-        <img src={avatarUrls[review.user]} alt={`${review.user}'s avatar`} className="avatar" />
-        <div>
+        <img src={avatarUrls[review.user] || 'https://via.placeholder.com/50?text=User1'} alt={`${review.user}'s avatar`} className="avatar" />
+        <div className="user-review-details">
           <div className="user-review-stars">
             {renderStars()}
           </div>
