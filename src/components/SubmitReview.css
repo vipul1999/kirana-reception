@@ -1,0 +1,20 @@
+.shop-actions {
+    margin-top: 20px;
+  }
+  
+  .shop-actions .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .shop-actions .form-group label {
+    font-weight: bold;
+  }
+  
+  .shop-actions .form-group textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+  }
+  
+  .shop-actions button {
+    margin-right: 10px;
+  }
+  
