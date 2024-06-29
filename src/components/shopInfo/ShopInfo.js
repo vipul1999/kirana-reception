@@ -51,7 +51,7 @@ const ShopInfo = ({ shop }) => {
           <p>Rating: {renderStars(shop.rating)} by {shop.reviews.length} Users</p>
           <div className="button-group">
             <Button variant="primary" onClick={toggleSubmitReview}>
-              Rate Shop
+              Submit Review
             </Button>
             <Button variant="link" onClick={toggleReviews} className="toggle-reviews">
               Show Reviews
