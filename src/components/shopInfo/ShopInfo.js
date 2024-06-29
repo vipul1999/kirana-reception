@@ -14,9 +14,14 @@ const renderStars = (rating) => {
 
 const ShopInfo = ({ shop }) => {
   const [showReviews, setShowReviews] = useState(false);
+  const [showSubmitReview, setShowSubmitReview] = useState(false); // State to control showing/hiding review submission form
 
   const toggleReviews = () => {
     setShowReviews(!showReviews);
+  };
+
+  const toggleSubmitReview = () => {
+    setShowSubmitReview(!showSubmitReview);
   };
 
   const fetchShopData = async () => {
@@ -44,10 +49,20 @@ const ShopInfo = ({ shop }) => {
           <p>Contact: {shop.contact}</p>
           <p>Services: {shop.services.join(', ')}</p>
           <p>Rating: {renderStars(shop.rating)} by {shop.reviews.length} Users</p>
+          <div className="button-group">
+            <Button variant="primary" onClick={toggleSubmitReview}>
+              Rate Shop
+            </Button>
+            <Button variant="link" onClick={toggleReviews} className="toggle-reviews">
+              Show Reviews
+            </Button>
+          </div>
         </div>
       </div>
-      <SubmitReview shop={shop} fetchShopData={fetchShopData} />
-      {shop.reviews.length > 0 && (
+      {showSubmitReview && (
+        <SubmitReview shop={shop} fetchShopData={fetchShopData} />
+      )}
+      {showReviews && (
         <ShowReviews
           reviews={shop.reviews}
           showReviews={showReviews}
