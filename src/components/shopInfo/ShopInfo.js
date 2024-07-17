@@ -17,10 +17,12 @@ const ShopInfo = ({ shop }) => {
   const [showSubmitReview, setShowSubmitReview] = useState(false); // State to control showing/hiding review submission form
 
   const toggleReviews = () => {
+    setShowSubmitReview(false);
     setShowReviews(!showReviews);
   };
 
   const toggleSubmitReview = () => {
+    setShowReviews(false);
     setShowSubmitReview(!showSubmitReview);
   };
 
@@ -50,10 +52,10 @@ const ShopInfo = ({ shop }) => {
           <p>Services: {shop.services.join(', ')}</p>
           <p>Rating: {renderStars(shop.rating)} by {shop.reviews.length} Users</p>
           <div className="button-group">
-            <Button variant="primary" onClick={toggleSubmitReview}>
+            <Button variant={showSubmitReview ? "secondary" :"primary"} onClick={toggleSubmitReview}>
               Submit Review
             </Button>
-            <Button variant="link" onClick={toggleReviews} className="toggle-reviews">
+            <Button variant= {showReviews ? "secondary" : "primary"} onClick={toggleReviews} className="toggle-reviews">
               Show Reviews
             </Button>
           </div>

@@ -42,9 +42,6 @@
   text-decoration: none;
 }
 
-.toggle-reviews:hover {
-  text-decoration: underline;
-}
 
 .shop-reviews h6 {
   margin-top: 20px;
@@ -63,4 +60,9 @@
 
 .shop-actions button {
   margin-right: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-evenly; /* or space-around, space-evenly, etc. */
 }

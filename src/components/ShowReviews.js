@@ -28,17 +28,7 @@ const ShowReviews = ({ reviews }) => {
 
   return (
     <div className="shop-reviews">
-      <div className="show-reviews-button">
-        <Button
-          variant="outline-primary"
-          onClick={toggleReviews}
-          className="toggle-reviews"
-          style={{ textAlign: 'left' }} // Align button text to the left
-        >
-          {showReviews ? 'Hide Reviews' : 'Show Reviews'}
-        </Button>
-      </div>
-      {showReviews && (
+      {(
         <>
           <div className="pagination-container">
             <Button
