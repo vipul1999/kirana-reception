@@ -3,12 +3,17 @@ import axios from 'axios';
 import ShopInfo from './shopInfo/ShopInfo';
 import './ShopList.css';
 
-const ShopList = () => {
+const ShopList = ({ selectedCategory }) => {
   const [shops, setShops] = useState([]);
-
   const fetchShopData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/shops`);
+
+      let url = `${process.env.REACT_APP_API_BASE_URL}/shops`;
+      if (selectedCategory && selectedCategory.trim().length > 0) {
+        url += `?category=${selectedCategory}`;
+      } 
+      console.log("Url generated is: "+url);
+      const response = await axios.get(url);
       setShops(response.data);
     } catch (error) {
       console.error('Error fetching shop data:', error);
@@ -17,7 +22,7 @@ const ShopList = () => {
 
   useEffect(() => {
     fetchShopData();
-  }, []);
+  }, [selectedCategory]);
 
   return (
     <div className="shop-list">
@@ -25,6 +30,7 @@ const ShopList = () => {
         <ShopInfo key={shop._id} shop={shop} fetchShopData={fetchShopData} />
       ))}
     </div>
+    
   );
 };
 
