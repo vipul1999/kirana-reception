@@ -4,6 +4,7 @@ import axios from 'axios';
 import SubmitReview from '../SubmitReview'; // Adjust path as per your project structure
 import ShowReviews from '../ShowReviews'; // Adjust path as per your project structure
 import './ShopInfo.css';
+import { Link } from 'react-router-dom';
 
 const renderStars = (rating) => {
   const fullStars = '★'.repeat(Math.floor(rating));
@@ -39,11 +40,13 @@ const ShopInfo = ({ shop }) => {
     <Card.Body>
       <div className="shop-header">
         <div className="shop-image">
-          <img
-            src={shop.image || "https://via.placeholder.com/350x350?text=default-shop"}
-            alt={shop.name}
-            className="shop-img"
-          />
+          <Link to={`/shop/${shop._id}/inventory`}>
+            <img
+              src={shop.image || "https://via.placeholder.com/350x350?text=default-shop"}
+              alt={shop.name}
+              className="shop-img"
+            />
+          </Link>
         </div>
         <div className="shop-details">
           <h5>{shop.name}</h5>
